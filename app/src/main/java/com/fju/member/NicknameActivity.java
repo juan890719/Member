@@ -20,15 +20,15 @@ public class NicknameActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_nickname);
         neckname = findViewById(R.id.nickname);
         findViewById(R.id.next).setOnClickListener(this);
-        String Sneckname = neckname.getText().toString();
-        SharedPreferences neckname = getSharedPreferences("nm",MODE_PRIVATE);
-        neckname.edit()
-                .putString("NECKNAME",Sneckname)
-                .commit();
     }
 
     @Override
     public void onClick(View v) {
+        String Sneckname = neckname.getText().toString();
+        SharedPreferences Neckname = getSharedPreferences("nm",MODE_PRIVATE);
+        Neckname.edit()
+                .putString("NECKNAME",Sneckname)
+                .commit();
         Intent intent = new Intent(this,GenderActivity.class);
         startActivity(intent);
     }

@@ -19,16 +19,16 @@ public class GenderActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gender);
         gender = findViewById(R.id.gender);
-        String Sgender = gender.getText().toString();
         findViewById(R.id.next).setOnClickListener(this);
-        SharedPreferences gender = getSharedPreferences("g",MODE_PRIVATE);
-        gender.edit()
-                .putString("GENDER",Sgender)
-                .commit();
     }
 
     @Override
     public void onClick(View v) {
+        String Sgender = gender.getText().toString();
+        SharedPreferences Gender = getSharedPreferences("g",MODE_PRIVATE);
+        Gender.edit()
+                .putString("GENDER",Sgender)
+                .commit();
         Intent intent = new Intent(this,AgeActivity.class);
         startActivity(intent);
     }

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
 
+import java.util.zip.GZIPInputStream;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText neckname;
@@ -18,17 +20,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         neckname = findViewById(R.id.nm);
-        String SN = neckname.getText().toString();
         gender = findViewById(R.id.g);
-        String SG = gender.getText().toString();
         age = findViewById(R.id.a);
+        String Neckname = getSharedPreferences("nm",MODE_PRIVATE)
+                .getString("NECKNAME","");
+        neckname.setText(Neckname);
+        String Gender = getSharedPreferences("g",MODE_PRIVATE)
+                .getString("GENDER","");
+        gender.setText(Gender);
+        String Age = getSharedPreferences("a",MODE_PRIVATE)
+                .getString("AGE","");
+        age.setText(Age);
+        String SN = neckname.getText().toString();
+        String SG = gender.getText().toString();
         String SA = age.getText().toString();
-        String Sneckname = getSharedPreferences("nm",MODE_PRIVATE)
-                .getString("NECKNAME"," ");
-        neckname.setText(Sneckname);
         if (TextUtils.isEmpty(SN)){
             Intent intent1 = new Intent(this,NicknameActivity.class);
             startActivity(intent1);
+        }
+        else if (TextUtils.isEmpty(SG)){
+            Intent intent2 = new Intent(this,GenderActivity.class);
+            startActivity(intent2);
+        }
+        else if(TextUtils.isEmpty(SA)){
+            Intent intent3 = new Intent(this,AgeActivity.class);
+            startActivity(intent3);
         }
     }
 }
